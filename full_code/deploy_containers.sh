@@ -41,7 +41,7 @@ wait_for_health() {
 wait_for_health "$BACKEND"
 wait_for_health "$FRONTEND"
 
-echo "Smoke test (expected Predicted_Product_Store_Sales_Total near 2909.27):"
+echo "Smoke test (model prediction for the course template payload; 2904.05 with the shipped model):"
 curl -fsS -X POST http://127.0.0.1:7860/v1/predict \
   -H "Content-Type: application/json" \
   -d '{"Product_Weight": 12.66, "Product_Sugar_Content": "Low Sugar", "Product_Allocated_Area": 0.027, "Product_MRP": 117.08, "Store_Size": "Medium", "Store_Location_City_Type": "Tier 2", "Store_Type": "Supermarket Type2", "Product_Id_char": "FD", "Store_Age_Years": 16, "Product_Type_Category": "Non Perishables"}'

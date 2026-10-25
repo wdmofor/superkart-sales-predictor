@@ -12,6 +12,7 @@ DEPLOY_DIR = Path(__file__).resolve().parents[2]
 BACKEND_DIR = DEPLOY_DIR / "full_code" / "backend_files"
 DATA_DIR = DEPLOY_DIR / "data"
 
+# Course template payload: data row 0 (FD6114, Frozen Foods), with its category set to Non Perishables.
 TEMPLATE_PAYLOAD = {
     "Product_Weight": 12.66,
     "Product_Sugar_Content": "Low Sugar",
@@ -26,6 +27,7 @@ TEMPLATE_PAYLOAD = {
 }
 
 
+# Load app.py by path so the tests exercise the shipped file without installing it as a package.
 @pytest.fixture(scope="module")
 def client():
     spec = importlib.util.spec_from_file_location("superkart_backend_app", BACKEND_DIR / "app.py")
@@ -70,6 +72,7 @@ def test_out_of_range_value_is_a_warning_not_an_error(client):
 
 
 def test_unseen_category_pair_is_a_warning_not_an_error(client):
+    # DR with Perishables never occurs in training; DR with Non Perishables does.
     payload = {**TEMPLATE_PAYLOAD, "Product_Id_char": "DR", "Product_Type_Category": "Perishables"}
     response = client.post("/v1/predict", json=payload)
     body = response.get_json()
@@ -129,6 +132,7 @@ def test_batch_predicts_valid_rows_and_reports_unseen_store_rows(client):
     assert body["rows_received"] == 10
     assert body["rows_predicted"] == 8
     assert sorted(int(row) for row in body["predictions"]) == [1, 2, 3, 4, 6, 7, 8, 9]
+    # Rows 5 and 10 use Supermarket Type3, which is not a training store type, so they are rejected.
     assert [error["row"] for error in body["errors"]] == [5, 10]
     assert all("Supermarket Type3" in error["message"] for error in body["errors"])
 
@@ -145,6 +149,7 @@ def test_batch_flags_unseen_category_pair_on_its_row(client):
 def test_batch_and_single_predictions_agree(client):
     batch = pd.read_csv(DATA_DIR / "Batch_Data_SuperKart.csv").head(1)
     record = json.loads(batch.to_json(orient="records"))[0]
+    # The first batch row must score the same through the single and batch endpoints.
     single = client.post("/v1/predict", json=record).get_json()["Predicted_Product_Store_Sales_Total"]
     batch_body = _post_batch(client, _batch_bytes()).get_json()
     assert batch_body["predictions"]["1"] == pytest.approx(single, abs=0.01)
@@ -156,6 +161,7 @@ def test_batch_without_file_returns_400(client):
 
 
 def test_batch_header_only_returns_400(client):
+    # A header line with no data rows is rejected before validation.
     header = _batch_bytes().splitlines()[0] + b"\n"
     response = _post_batch(client, header)
     assert response.status_code == 400
@@ -169,5 +175,6 @@ def test_batch_missing_columns_returns_400(client):
 
 
 def test_batch_unreadable_file_returns_400(client):
+    # An empty upload makes pandas raise EmptyDataError, which the endpoint reports as HTTP 400.
     response = _post_batch(client, b"")
     assert response.status_code == 400

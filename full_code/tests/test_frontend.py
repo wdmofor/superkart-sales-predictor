@@ -10,6 +10,7 @@ DEPLOY_DIR = Path(__file__).resolve().parents[2]
 FRONTEND_DIR = DEPLOY_DIR / "full_code" / "frontend_files"
 DATA_DIR = DEPLOY_DIR / "data"
 
+# Course template payload: data row 0 (FD6114, Frozen Foods), with its category set to Non Perishables.
 TEMPLATE_PAYLOAD = {
     "Product_Weight": 12.66,
     "Product_Sugar_Content": "Low Sugar",
@@ -24,6 +25,7 @@ TEMPLATE_PAYLOAD = {
 }
 
 
+# Load the Streamlit script by path; its __main__ guard keeps the server from starting on import.
 @pytest.fixture(scope="module")
 def frontend():
     spec = importlib.util.spec_from_file_location("superkart_frontend_app", FRONTEND_DIR / "app.py")
@@ -36,7 +38,7 @@ def frontend():
 def raw_form(frontend):
     return {
         "Product_Id": "FD6114",
-        "Product_Type": "Snack Foods",
+        "Product_Type": "Frozen Foods",
         "Product_Weight": 12.66,
         "Product_Sugar_Content": "Low Sugar",
         "Product_Allocated_Area": 0.027,
@@ -51,10 +53,12 @@ def raw_form(frontend):
 @pytest.fixture(scope="module")
 def training_frame():
     frame = pd.read_csv(DATA_DIR / "SuperKart.csv")
+    # The raw data writes regular-sugar products as 'reg'; the app's option list uses 'Regular'.
     frame["Product_Sugar_Content"] = frame["Product_Sugar_Content"].replace({"reg": "Regular"})
     return frame
 
 
+# Stands in for requests.Response; only status_code and json() are used by the app.
 class FakeResponse:
     def __init__(self, status_code, body):
         self.status_code = status_code
@@ -100,6 +104,7 @@ def test_unsupported_product_type_is_rejected(frontend, raw_form):
     [
         ("Dairy", "Perishables"),
         ("Fruits and Vegetables", "Perishables"),
+        ("Frozen Foods", "Non Perishables"),
         ("Snack Foods", "Non Perishables"),
         ("Others", "Non Perishables"),
     ],
@@ -131,6 +136,7 @@ def test_backend_error_carries_row_details(frontend, monkeypatch):
 
 
 def test_non_json_error_body_still_raises_backend_error(frontend, monkeypatch):
+    # A non-JSON error body is treated as empty, so the HTTP status still reaches the message.
     fake = FakeResponse(500, ValueError("no json"))
     monkeypatch.setattr(frontend.requests, "post", lambda *args, **kwargs: fake)
     with pytest.raises(frontend.BackendError, match="HTTP 500"):

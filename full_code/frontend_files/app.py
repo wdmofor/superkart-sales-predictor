@@ -7,6 +7,7 @@ import pandas as pd
 import requests
 import streamlit as st
 
+# The container run sets this to the backend's Docker-network name; localhost is only the local default.
 API_URL = os.environ.get("SUPERKART_API_URL", "http://localhost:7860").rstrip("/")
 REQUEST_TIMEOUT_SECONDS = 60
 REFERENCE_YEAR = 2025
@@ -30,11 +31,11 @@ PRODUCT_TYPES = [
     "Soft Drinks",
     "Starchy Foods",
 ]
+# Course convention: Frozen Foods is non-perishable (the template example FD6114 is Frozen Foods labelled Non Perishables).
 PERISHABLE_PRODUCT_TYPES = {
     "Breads",
     "Breakfast",
     "Dairy",
-    "Frozen Foods",
     "Fruits and Vegetables",
     "Meat",
     "Seafood",
@@ -72,6 +73,7 @@ def product_type_category(product_type):
 
 def build_model_features(raw, reference_year=REFERENCE_YEAR):
     """Convert form inputs into the 10 features expected by the API."""
+    # Product_Id is normalised to upper case; only its two-letter prefix is a model feature.
     product_id = str(raw["Product_Id"]).strip().upper()
     if not PRODUCT_ID_PATTERN.fullmatch(product_id):
         raise ValueError("Product_Id must be two letters followed by 1 to 4 digits, for example FD6114.")
@@ -81,6 +83,7 @@ def build_model_features(raw, reference_year=REFERENCE_YEAR):
     establishment_year = int(raw["Store_Establishment_Year"])
     if establishment_year > reference_year:
         raise ValueError("Store_Establishment_Year cannot be later than the reference year.")
+    # The model was trained on store age, not establishment year, so age is derived here at the same reference year.
     return {
         "Product_Weight": float(raw["Product_Weight"]),
         "Product_Sugar_Content": raw["Product_Sugar_Content"],
@@ -96,6 +99,7 @@ def build_model_features(raw, reference_year=REFERENCE_YEAR):
 
 
 def _parse_response(response):
+    # Non-JSON bodies (for example, proxy error pages) are treated as empty so the HTTP status still reaches the user.
     try:
         body = response.json()
     except ValueError:
@@ -127,11 +131,12 @@ def check_api_status():
 
 
 def render_single_prediction():
+    # Form defaults match the course template payload (FD6114).
     with st.form("single_prediction"):
         left, right = st.columns(2)
         with left:
             product_id = st.text_input("Product_Id", value="FD6114", help="Two letters followed by 1 to 4 digits")
-            product_type = st.selectbox("Product_Type", PRODUCT_TYPES, index=PRODUCT_TYPES.index("Snack Foods"))
+            product_type = st.selectbox("Product_Type", PRODUCT_TYPES, index=PRODUCT_TYPES.index("Frozen Foods"))
             product_weight = st.number_input("Product_Weight", min_value=1.0, max_value=30.0, value=12.66, step=0.01)
             sugar_content = st.selectbox("Product_Sugar_Content", SUGAR_CONTENT_OPTIONS)
             allocated_area = st.number_input(
@@ -149,6 +154,7 @@ def render_single_prediction():
 
     if not submitted:
         return
+    # Build the raw form values first; build_model_features turns them into the API's 10 features.
     raw = {
         "Product_Id": product_id,
         "Product_Type": product_type,
@@ -161,6 +167,7 @@ def render_single_prediction():
         "Store_Location_City_Type": city_type,
         "Store_Establishment_Year": establishment_year,
     }
+    # Local input errors (ValueError) and API rejections (BackendError) are shown as messages; network failures are reported separately.
     try:
         features = build_model_features(raw)
         body = request_single_prediction(features)
@@ -182,6 +189,7 @@ def render_single_prediction():
 
 def summarize_batch_response(body):
     """Turn a batch API response into the tables and counts shown in the batch tab."""
+    # JSON object keys arrive as strings, so the row numbers are converted back to integers for display.
     predictions = pd.DataFrame(
         [
             {"Row": int(row), "Predicted_Product_Store_Sales_Total": value}
@@ -202,6 +210,7 @@ def render_batch_prediction():
     st.write("Upload a CSV with these columns (one product-store row per line):")
     st.code(", ".join(BATCH_COLUMNS))
     uploaded = st.file_uploader("Batch CSV", type=["csv"])
+    # Streamlit reruns the script on every interaction, so the upload is sent only after a file is chosen and the button is pressed.
     if uploaded is None or not st.button("Predict batch"):
         return
     try:
