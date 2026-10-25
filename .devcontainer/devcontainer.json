@@ -1,0 +1,12 @@
+{
+  "name": "SuperKart full-code deployment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [7860, 7870],
+  "portsAttributes": {
+    "7860": { "label": "SuperKart backend (Flask API)", "onAutoForward": "notify" },
+    "7870": { "label": "SuperKart frontend (Streamlit app)", "onAutoForward": "notify" }
+  }
+}
