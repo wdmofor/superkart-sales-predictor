@@ -152,6 +152,7 @@ def render_single_prediction():
             )
         submitted = st.form_submit_button("Predict sales")
 
+    # Streamlit reruns the script on every widget change, so the API is called only when the button was pressed.
     if not submitted:
         return
     # Build the raw form values first; build_model_features turns them into the API's 10 features.
@@ -235,6 +236,7 @@ def render_batch_prediction():
 
 
 def main():
+    # Streamlit requires set_page_config to be the first Streamlit call on the page.
     st.set_page_config(page_title="SuperKart Sales Predictor", layout="wide")
     st.title("SuperKart Sales Predictor")
     st.caption("Predicts Product_Store_Sales_Total with the selected pipeline served by the API.")

@@ -123,6 +123,7 @@ def _prepare_frame(frame):
     return features, errors, warnings
 
 
+# The Docker HEALTHCHECK in backend_files/Dockerfile calls this route, so it must stay cheap and return 200 while the app is up.
 @superkart_api.get("/")
 def health():
     return jsonify(

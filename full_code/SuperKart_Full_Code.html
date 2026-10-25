@@ -7796,7 +7796,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c0e74b20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3337b2ea">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7826,6 +7826,52 @@ a.anchor-link {
 <p><strong>What this notebook covers:</strong> exploratory data analysis, preprocessing, model building, hyperparameter tuning, model comparison and selection, serialization with a reload check, the Flask backend, the Streamlit frontend, and automated tests.</p>
 <p><strong>Reference year:</strong> store age = 2025 − <code>Store_Establishment_Year</code>. This matches the course template example (a 2009 store has age 16).</p>
 <p><strong>Build record:</strong> the backend and frontend files are written by <code>%%writefile</code> cells in this notebook, so the notebook shows exactly what is deployed.</p>
+<h2 id="Rubric-map">Rubric map<a class="anchor-link" href="#Rubric-map">¶</a></h2><table>
+<thead>
+<tr>
+<th>Course criterion</th>
+<th>Where it is shown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data overview and EDA</td>
+<td>Sections 2 and 3: shape, dtypes, duplicate and missing-value checks, univariate and bivariate plots, sales by product and store</td>
+</tr>
+<tr>
+<td>Data preprocessing</td>
+<td>Sections 2.1 and 4: feature engineering, outliers, encoding, split, and leakage controls</td>
+</tr>
+<tr>
+<td>Model building</td>
+<td>Section 5: evaluation functions, cross-validated baseline, untuned train and test scores</td>
+</tr>
+<tr>
+<td>Hyperparameter tuning</td>
+<td>Section 6: key hyperparameters, search method and cost, tuned train and test scores in section 7.2</td>
+</tr>
+<tr>
+<td>Comparison, selection, serialization</td>
+<td>Section 7: comparison, selection rule, feature importance, actual vs predicted, seed check, saved pipeline and reload check</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>Sections 8 and 11: Flask API, Dockerfile, pinned requirements, tests, live checks</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>Sections 9 and 11: Streamlit app, Dockerfile, pinned requirements, tests, live checks</td>
+</tr>
+<tr>
+<td>Insights and recommendations</td>
+<td>Section 13: results, recommendations, limitations, next steps</td>
+</tr>
+<tr>
+<td>Overall quality</td>
+<td>Observations after each output, inline code comments, top-to-bottom run, tests in section 12</td>
+</tr>
+</tbody>
+</table>
 <h2 id="Links">Links<a class="anchor-link" href="#Links">¶</a></h2><table>
 <thead>
 <tr>
@@ -7867,7 +7913,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2c3447b4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=86b421b9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7877,7 +7923,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ea9a77e6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=037b6eaa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7935,6 +7981,7 @@ a.anchor-link {
     <span class="s2">"joblib"</span><span class="p">:</span> <span class="s2">"1.4.2"</span><span class="p">,</span>
     <span class="s2">"xgboost"</span><span class="p">:</span> <span class="s2">"2.1.4"</span><span class="p">,</span>
 <span class="p">}</span>
+<span class="c1"># Stop the run if any training package differs from its pinned version, so the results are reproducible.</span>
 <span class="k">for</span> <span class="n">package_name</span><span class="p">,</span> <span class="n">pinned_version</span> <span class="ow">in</span> <span class="n">PINNED_VERSIONS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">installed_version</span> <span class="o">=</span> <span class="n">importlib_metadata</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="n">package_name</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">installed_version</span> <span class="o">==</span> <span class="n">pinned_version</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">package_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">installed_version</span><span class="si">}</span><span class="s2"> != pinned </span><span class="si">{</span><span class="n">pinned_version</span><span class="si">}</span><span class="s2">"</span>
@@ -7970,17 +8017,32 @@ streamlit      1.45.1
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13bfd582">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b9fa2ab6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="2.-Loading-the-dataset-and-Data-Overview">2. Loading the dataset and Data Overview<a class="anchor-link" href="#2.-Loading-the-dataset-and-Data-Overview">¶</a></h1><p>The dataset has 8,763 product-store sales records and 12 columns. The checks below cover shape, duplicates, missing values, and value sets.</p>
+<p><strong>Observations</strong></p>
+<ul>
+<li>The five training packages (numpy, pandas, scikit-learn, joblib, and xgboost) match their pins, so the assertion passes and the run uses the pinned versions.</li>
+<li>Flask 3.1.1 and Streamlit 1.45.1 are printed for the serving stack. Their pins are in <code>backend_files/requirements.txt</code> and <code>frontend_files/requirements.txt</code>.</li>
+</ul>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93c896b7">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d6aa3045">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="2.-Loading-the-dataset-and-Data-Overview">2. Loading the dataset and Data Overview<a class="anchor-link" href="#2.-Loading-the-dataset-and-Data-Overview">¶</a></h1><p>The dataset has 8,763 product-store sales records and 12 columns. The checks below use the shape, the data types, <code>duplicated()</code> for duplicate rows, <code>isna()</code> for missing values, <code>describe()</code> for summary statistics, and value counts for each text column.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=769c1186">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7988,7 +8050,8 @@ streamlit      1.45.1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the raw sales file and check its size.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Rows x columns:"</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
@@ -8125,7 +8188,22 @@ streamlit      1.45.1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=79a360d6">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84d22c44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Observations</strong></p>
+<ul>
+<li>The file has 8,763 rows and 12 columns. The first seven rows already include all four stores (OUT001 to OUT004), and the product IDs use the FD and NC prefixes.</li>
+<li>Row 0 is FD6114, a Frozen Foods product. The course template uses this row as its example input, and section 2.1 gives the Perishables mapping that places Frozen Foods in Non Perishables.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9f07a471">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8133,7 +8211,8 @@ streamlit      1.45.1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Duplicate rows:"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Both totals should be 0 before modelling, so no rows are dropped or imputed.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Duplicate rows:"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Missing values in total:"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"missing"</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">())</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
@@ -8326,7 +8405,22 @@ Missing values in total: 0
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f1f89a24">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47ea7bf0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Observations</strong></p>
+<ul>
+<li>Both checks return 0, so no rows are removed and no values are imputed. The <code>describe()</code> table shows Product_Store_Sales_Total with a minimum of 33 and a maximum of 8,000.</li>
+<li>The largest sales value is 8,000.00, and the next largest is 6,977.43. This is one extreme row rather than a group of capped values, so it is kept as a real case (see the outlier observations below).</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=996c7f72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8334,7 +8428,8 @@ Missing values in total: 0
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">object_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">"object"</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Text columns with more than 20 levels are counted, not listed, to keep the output short.</span>
+<span class="n">object_columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">"object"</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
 <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">object_columns</span><span class="p">:</span>
     <span class="n">unique_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">unique_count</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
@@ -8413,7 +8508,22 @@ Food Mart             1152
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76d4fca4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85396c72">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Observations</strong></p>
+<ul>
+<li>Product_Id has 8,763 unique values, one per row, so the full ID cannot serve as a category. Its two-letter prefix is used as a feature instead (section 2.1).</li>
+<li>The spelling <code>reg</code> appears in 108 rows of Product_Sugar_Content. The next step maps it to <code>Regular</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b224f2d9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8430,7 +8540,7 @@ Food Mart             1152
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9878e21c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0df66bef">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8438,7 +8548,8 @@ Food Mart             1152
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Before:"</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Product_Sugar_Content"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Map the 'reg' spelling to 'Regular' so the sugar levels are consistent.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Before:"</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Product_Sugar_Content"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">"Product_Sugar_Content"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Product_Sugar_Content"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">"reg"</span><span class="p">:</span> <span class="s2">"Regular"</span><span class="p">})</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"After: "</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Product_Sugar_Content"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 </pre></div>
@@ -8460,7 +8571,21 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f191a959">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=698de1b4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Observations</strong></p>
+<ul>
+<li>After mapping, Low Sugar has 4,885 rows, Regular 2,359, and No Sugar 1,519. These three levels sum to all 8,763 rows, so every row has a valid sugar label.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ab61b5ce">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8469,6 +8594,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">STORE_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Store_Id"</span><span class="p">,</span> <span class="s2">"Store_Type"</span><span class="p">,</span> <span class="s2">"Store_Size"</span><span class="p">,</span> <span class="s2">"Store_Location_City_Type"</span><span class="p">,</span> <span class="s2">"Store_Establishment_Year"</span><span class="p">]</span>
+<span class="c1"># Each store has one fixed combination of attributes, so one row per store shows every store profile.</span>
 <span class="n">store_profile</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">STORE_COLUMNS</span><span class="p">]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"Store_Id"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">store_profile</span><span class="p">[</span><span class="s2">"Rows"</span><span class="p">]</span> <span class="o">=</span> <span class="n">store_profile</span><span class="p">[</span><span class="s2">"Store_Id"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"Store_Id"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Distinct stores:"</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Store_Id"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="s2">"| distinct store profiles:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">store_profile</span><span class="p">))</span>
@@ -8563,7 +8689,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=681429b6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2ace9658">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8571,13 +8697,12 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Observations</strong></p>
 <ul>
-<li>The data has 8,763 rows, no missing values, and no duplicate rows. The 108 rows labelled <code>reg</code> are mapped to <code>Regular</code>, so that level grows from 2,251 to 2,359 rows.</li>
 <li>Store mix: Supermarket Type2 holds 4,676 rows (53%), so its patterns dominate the fit. The other store types hold 1,586 (Type1), 1,349 (Departmental Store), and 1,152 (Food Mart) rows.</li>
 </ul>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=907e1473">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=313e0e9d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8749,7 +8874,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e8299b2c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fc6cda4b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8764,7 +8889,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3e2d8252">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=caaf663c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8774,7 +8899,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e8b1b6eb">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1ef1ec52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8887,7 +9012,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9316a29b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=478bc63f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8902,7 +9027,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a93232d7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fc62744c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8910,7 +9035,8 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">categorical_plot_columns</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Count plots for the categorical features, with levels ordered by frequency.</span>
+<span class="n">categorical_plot_columns</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"Product_Sugar_Content"</span><span class="p">,</span>
     <span class="s2">"Store_Size"</span><span class="p">,</span>
     <span class="s2">"Store_Location_City_Type"</span><span class="p">,</span>
@@ -8957,7 +9083,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a27eb85c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2c60c06f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8972,7 +9098,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1ce6fe39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=128cf40d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8980,7 +9106,8 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 <div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">outlier_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># IQR fences: values beyond 1.5 × IQR from the quartiles are flagged. They are counted here and kept in the data.</span>
+<span class="n">outlier_rows</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Product_Weight"</span><span class="p">,</span> <span class="s2">"Product_Allocated_Area"</span><span class="p">,</span> <span class="s2">"Product_MRP"</span><span class="p">,</span> <span class="s2">"Product_Store_Sales_Total"</span><span class="p">]:</span>
     <span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
     <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
@@ -9087,7 +9214,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1c1188fb">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd4e4f39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9095,14 +9222,15 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Observations</strong></p>
 <ul>
-<li>The IQR rule flags 119 sales values (1.36%), 54 product weights (0.62%), 104 allocated areas (1.19%), and 57 MRPs (0.65%). Each share is small.</li>
+<li>The IQR rule uses fences of Q1 − 1.5 × IQR and Q3 + 1.5 × IQR. Values outside the fences are flagged. For sales the fences are 686.54 and 6,220.34. The table above gives the fences for the other three columns.</li>
+<li>The rule flags 119 sales values (1.36%), 54 product weights (0.62%), 104 allocated areas (1.19%), and 57 MRPs (0.65%). Each share is small.</li>
 <li>All outliers are kept. The high sales values are real cases the model must predict, and removing them would hide the upper end of the range. Tree splits depend on the rank order of feature values rather than their size, so extreme feature values have limited influence. Extreme sales values still pull leaf averages, which is noted as a limitation.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=04e68379">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ccd71ccb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9112,7 +9240,7 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61184efa">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1b32578f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9120,7 +9248,8 @@ After:  {'Low Sugar': 4885, 'Regular': 2359, 'No Sugar': 1519}
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">correlation_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Product_Weight"</span><span class="p">,</span> <span class="s2">"Product_Allocated_Area"</span><span class="p">,</span> <span class="s2">"Product_MRP"</span><span class="p">,</span> <span class="s2">"Store_Age_Years"</span><span class="p">,</span> <span class="s2">"Product_Store_Sales_Total"</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Pearson correlation measures linear association only, so it does not show cause.</span>
+<span class="n">correlation_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Product_Weight"</span><span class="p">,</span> <span class="s2">"Product_Allocated_Area"</span><span class="p">,</span> <span class="s2">"Product_MRP"</span><span class="p">,</span> <span class="s2">"Store_Age_Years"</span><span class="p">,</span> <span class="s2">"Product_Store_Sales_Total"</span><span class="p">]</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">correlation_columns</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">".2f"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"vlag"</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Pearson correlation: numeric features and target"</span><span class="p">)</span>
@@ -9157,7 +9286,7 @@ Product_Weight vs Product_MRP: 0.533
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4fe60b83">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4dc181ef">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9171,7 +9300,7 @@ Product_Weight vs Product_MRP: 0.533
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7291bab8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13517070">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9346,7 +9475,7 @@ Supermarket Type2     0.562
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11e8ff18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6db937ab">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9362,7 +9491,7 @@ Supermarket Type2     0.562
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=aca9e473">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=438b96e0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9372,7 +9501,7 @@ Supermarket Type2     0.562
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=df19e12b">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=faffb0da">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9389,6 +9518,7 @@ Supermarket Type2     0.562
     <span class="p">)</span>
 
 
+<span class="c1"># Product_Id_char is the two-letter prefix of Product_Id (FD, DR or NC).</span>
 <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Product_Type"</span><span class="p">,</span> <span class="s2">"Product_Sugar_Content"</span><span class="p">,</span> <span class="s2">"Product_Id_char"</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> levels, sorted by median sales"</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">sales_summary</span><span class="p">(</span><span class="n">column</span><span class="p">))</span>
@@ -9701,7 +9831,7 @@ Product_Id_char: 3 levels, sorted by median sales
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=07a7b734">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5c26394d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9717,7 +9847,7 @@ Product_Id_char: 3 levels, sorted by median sales
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=883bcc48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9328ecfc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9730,6 +9860,7 @@ Product_Id_char: 3 levels, sorted by median sales
     <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">Rows</span><span class="o">=</span><span class="s2">"count"</span><span class="p">,</span> <span class="n">Total_revenue</span><span class="o">=</span><span class="s2">"sum"</span><span class="p">,</span> <span class="n">Mean</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">,</span> <span class="n">Median</span><span class="o">=</span><span class="s2">"median"</span><span class="p">)</span>
     <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="p">)</span>
+<span class="c1"># Every row is counted once, so the store totals add up to the full dataset.</span>
 <span class="k">assert</span> <span class="n">store_revenue</span><span class="p">[</span><span class="s2">"Rows"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="n">store_revenue</span><span class="p">[</span><span class="s2">"Share of total"</span><span class="p">]</span> <span class="o">=</span> <span class="n">store_revenue</span><span class="p">[</span><span class="s2">"Total_revenue"</span><span class="p">]</span> <span class="o">/</span> <span class="n">store_revenue</span><span class="p">[</span><span class="s2">"Total_revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">store_revenue</span> <span class="o">=</span> <span class="n">store_revenue</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"Total_revenue"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -10037,7 +10168,7 @@ Product_Id_char: 3 levels, sorted by median sales
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0f8a026f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=feafb0f4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10053,7 +10184,7 @@ Product_Id_char: 3 levels, sorted by median sales
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=daba783a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19bf341d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10064,12 +10195,13 @@ Product_Id_char: 3 levels, sorted by median sales
 <li><strong>Encoding:</strong> the six categorical features are one-hot encoded inside the pipeline with <code>handle_unknown="error"</code>. An unseen category raises an error instead of being silently encoded as all zeros. The API applies the same rule.</li>
 <li><strong>Scaling:</strong> not applied. Tree ensembles split on thresholds and are not affected by monotonic scaling.</li>
 <li><strong>Outliers:</strong> IQR outliers are kept, as explained in section 3.1. Tree splits depend on the rank order of feature values rather than their size, so extreme feature values have limited influence. Extreme sales values still pull leaf averages, which is a limitation.</li>
-<li><strong>Split:</strong> 80/20 with <code>random_state=42</code>. The test set is never used for training, tuning, or model selection. It is scored only for reporting, including the overfitting check in section 5.3.</li>
+<li><strong>Split:</strong> 80/20 with <code>random_state=42</code>, applied before any fitting. The 80% is a common default that leaves 7,010 rows for fitting and 1,753 rows for a stable held-out estimate. Tuning and model selection use the training split only. The test split is reported only, including the overfitting check in section 5.3. Section 13 discloses that earlier exploratory rounds printed test metrics.</li>
+<li><strong>Leakage controls:</strong> the target <code>Product_Store_Sales_Total</code> and <code>Store_Id</code> are not features. Encoding and the model are fitted inside the pipeline, so each cross-validation fold fits the encoder on its own training rows only.</li>
 </ul>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bb9e2cd6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c1f1ec83">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10144,7 +10276,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bb81459e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=046041b5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10160,7 +10292,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=273f61ca">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0c06ab87">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10170,7 +10302,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7bd891b3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=a34fdb1f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10221,7 +10353,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0676808c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e33b0997">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10232,7 +10364,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=606632da">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38599f2b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10337,7 +10469,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7c5f4869">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=226665e6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10353,7 +10485,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b542c2c0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7f326633">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10363,7 +10495,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24e8a368">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93820acd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10371,13 +10503,15 @@ Template row (index 0, FD6114) in test split: True
 <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">untuned_fitted</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Refit the untuned models on the training split only, then score both splits.</span>
+<span class="n">untuned_fitted</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">model_name</span><span class="p">:</span> <span class="n">build_pipeline</span><span class="p">(</span><span class="n">clone</span><span class="p">(</span><span class="n">estimator</span><span class="p">))</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">estimator</span> <span class="ow">in</span> <span class="n">candidate_models</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 <span class="p">}</span>
 <span class="n">untuned_train_test</span> <span class="o">=</span> <span class="n">train_test_table</span><span class="p">(</span><span class="n">untuned_fitted</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">untuned_train_test</span><span class="p">)</span>
 <span class="n">untuned_rmse</span> <span class="o">=</span> <span class="n">untuned_train_test</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"Model"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"Split"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"RMSE"</span><span class="p">)</span>
+<span class="c1"># A positive gap (test RMSE above train RMSE) is the overfitting signal for each model.</span>
 <span class="n">untuned_gap</span> <span class="o">=</span> <span class="p">(</span><span class="n">untuned_rmse</span><span class="p">[</span><span class="s2">"Test"</span><span class="p">]</span> <span class="o">-</span> <span class="n">untuned_rmse</span><span class="p">[</span><span class="s2">"Train"</span><span class="p">])</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"Test minus train RMSE"</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">untuned_rmse</span><span class="p">,</span> <span class="n">untuned_gap</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
@@ -10544,7 +10678,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ffbae42e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99701a88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10560,18 +10694,25 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=da2b6e34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dc3fcd8c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="6.-Hyperparameter-Tuning">6. Hyperparameter Tuning<a class="anchor-link" href="#6.-Hyperparameter-Tuning">¶</a></h1><p><code>RandomizedSearchCV</code> samples 20 configurations per model. Each configuration is scored with the same shuffled 5-fold split on the training data and the negative RMSE objective. The best configuration is refit on the full training split.</p>
+<h1 id="6.-Hyperparameter-Tuning">6. Hyperparameter Tuning<a class="anchor-link" href="#6.-Hyperparameter-Tuning">¶</a></h1><p><code>RandomizedSearchCV</code> samples 20 configurations per model from the grids in the code. Each configuration is scored with the same shuffled 5-fold split on the training data and the negative RMSE objective. The best configuration is refit on the full training split.</p>
+<p><strong>Why a randomized search:</strong> the full grids contain 140 configurations for the Decision Tree, 300 for Random Forest, and 24,696 for XGBoost. A full grid search with 5-fold cross-validation would need 123,480 fits for XGBoost alone. The randomized search needs 100 cross-validation fits per model (20 × 5) plus one refit, so the run time stays practical, at the cost of not checking every combination. The search time for each model is in the comparison table in section 7.1.</p>
+<p><strong>Key hyperparameters:</strong></p>
+<ul>
+<li><strong>Decision Tree:</strong> <code>max_depth</code> caps how many splits a path can have. <code>min_samples_split</code> and <code>min_samples_leaf</code> set how many rows a node needs to split, or to end as a leaf. Larger values make the tree simpler and reduce overfitting.</li>
+<li><strong>Random Forest:</strong> <code>n_estimators</code> sets the number of trees. <code>max_features</code> sets the share of features each split may use, so fewer features per split make the trees less correlated and reduce variance. <code>max_depth</code> and <code>min_samples_leaf</code> limit tree size.</li>
+<li><strong>XGBoost:</strong> <code>n_estimators</code> and <code>learning_rate</code> trade off against each other, since a smaller learning rate needs more trees. <code>max_depth</code> controls complexity. <code>subsample</code> and <code>colsample_bytree</code> add random row and column sampling. <code>min_child_weight</code> sets a minimum weight per leaf, which regularises the model.</li>
+</ul>
 <p>The search and the selection use cross-validation on the training split only. The test split is reported in sections 5.3, 7.1, 7.2 and 7.4 for comparison. The development history of the earlier exploratory rounds is disclosed under Limitations in section 13. The tuned models are the best found within these grids, not guaranteed global optima. The observations after the search note which chosen values sit at a grid edge.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3caa5707">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dbf12a43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10641,7 +10782,7 @@ Template row (index 0, FD6114) in test split: True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Random Forest: best CV RMSE 282.17 (11.5 s)
+<pre>Random Forest: best CV RMSE 282.17 (11.7 s)
   best parameters: {'n_estimators': 100, 'min_samples_leaf': 1, 'max_features': 0.8, 'max_depth': 10}
 </pre>
 </div>
@@ -10649,7 +10790,7 @@ Template row (index 0, FD6114) in test split: True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>XGBoost: best CV RMSE 294.94 (21.5 s)
+<pre>XGBoost: best CV RMSE 294.94 (20.5 s)
   best parameters: {'subsample': 0.7, 'n_estimators': 50, 'min_child_weight': 20, 'max_depth': 10, 'learning_rate': 0.2, 'colsample_bytree': 1.0}
 </pre>
 </div>
@@ -10657,7 +10798,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b120bc90">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a591fca1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10673,7 +10814,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6ab82125">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8fba356f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10683,7 +10824,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f1764b39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3ba7b025">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10691,7 +10832,8 @@ Template row (index 0, FD6114) in test split: True
 <div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">comparison_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Test columns are computed for every candidate for transparency. Selection below uses only the CV column.</span>
+<span class="n">comparison_rows</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">tuning_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">search</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">"search"</span><span class="p">]</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
@@ -10708,6 +10850,7 @@ Template row (index 0, FD6114) in test split: True
 <span class="n">comparison_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">comparison_rows</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"Tuned CV RMSE"</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">comparison_table</span><span class="p">)</span>
 
+<span class="c1"># Selection rule: the lowest tuned CV RMSE on the training split.</span>
 <span class="n">selected_row</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">comparison_rows</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Tuned CV RMSE"</span><span class="p">])</span>
 <span class="n">selected_name</span> <span class="o">=</span> <span class="n">selected_row</span><span class="p">[</span><span class="s2">"Model"</span><span class="p">]</span>
 <span class="n">best_pipeline</span> <span class="o">=</span> <span class="n">tuning_results</span><span class="p">[</span><span class="n">selected_name</span><span class="p">][</span><span class="s2">"search"</span><span class="p">]</span><span class="o">.</span><span class="n">best_estimator_</span>
@@ -10769,7 +10912,7 @@ Template row (index 0, FD6114) in test split: True
 <td>280.314</td>
 <td>116.493</td>
 <td>0.931</td>
-<td>11.493</td>
+<td>11.653</td>
 </tr>
 <tr>
 <th>1</th>
@@ -10778,7 +10921,7 @@ Template row (index 0, FD6114) in test split: True
 <td>289.041</td>
 <td>132.320</td>
 <td>0.927</td>
-<td>21.532</td>
+<td>20.470</td>
 </tr>
 <tr>
 <th>2</th>
@@ -10787,7 +10930,7 @@ Template row (index 0, FD6114) in test split: True
 <td>296.078</td>
 <td>139.683</td>
 <td>0.923</td>
-<td>1.076</td>
+<td>1.086</td>
 </tr>
 </tbody>
 </table>
@@ -10810,7 +10953,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3da5c7cd">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0abca39b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10820,13 +10963,14 @@ Template row (index 0, FD6114) in test split: True
 <ul>
 <li>Tuned Random Forest has the lowest CV RMSE (282.171) and is selected. Tuned XGBoost is 12.769 higher (294.940), and tuned Decision Tree is 28.113 higher (310.284).</li>
 <li>The test split gives the same order: Random Forest RMSE 280.314, XGBoost 289.041, and Decision Tree 296.078. MAE and R² agree (116.493, 132.320, and 139.683; R² 0.931, 0.927, and 0.923).</li>
+<li>Generalisation: the selected model's test RMSE (280.314) is slightly below its CV RMSE (282.171), so its error does not rise on the held-out rows. Section 7.2 shows its train-test gap.</li>
 <li>Selection uses cross-validation only. The test columns are reported for comparison and agree with the choice.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=095a7673">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f0056614">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10836,7 +10980,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=560323d3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14d6d8b0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10844,7 +10988,8 @@ Template row (index 0, FD6114) in test split: True
 <div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">tuned_fitted</span> <span class="o">=</span> <span class="p">{</span><span class="n">model_name</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"search"</span><span class="p">]</span><span class="o">.</span><span class="n">best_estimator_</span> <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">tuning_results</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># The tuned estimators are the search's refit best models, trained on the training split only.</span>
+<span class="n">tuned_fitted</span> <span class="o">=</span> <span class="p">{</span><span class="n">model_name</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s2">"search"</span><span class="p">]</span><span class="o">.</span><span class="n">best_estimator_</span> <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">tuning_results</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 <span class="n">tuned_train_test</span> <span class="o">=</span> <span class="n">train_test_table</span><span class="p">(</span><span class="n">tuned_fitted</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">tuned_train_test</span><span class="p">)</span>
 <span class="n">tuned_rmse</span> <span class="o">=</span> <span class="n">tuned_train_test</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"Model"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"Split"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"RMSE"</span><span class="p">)</span>
@@ -11014,7 +11159,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8a08da83">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=458d85bf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11029,7 +11174,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ca523149">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d28b8ab">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11039,7 +11184,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=09bf14ef">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37da165e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11163,7 +11308,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=956d874d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2896dede">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11179,7 +11324,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84d23773">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=054903b5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11189,7 +11334,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=01a85be1">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b3855b75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11384,7 +11529,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=485de27f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ded21ee">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11395,13 +11540,13 @@ Template row (index 0, FD6114) in test split: True
 <li>Test RMSE is 280.314, and the mean residual is +7.588, so predictions are slightly low on average. Residuals are actual minus predicted.</li>
 <li>The points sit close to the diagonal. For rows predicted above 5,000, the mean residual is +93.6, so the largest predictions are too low on average.</li>
 <li>The residual spread is similar in the three bands (standard deviation 271 to 296), so the same absolute error is a smaller share of the largest sales. Vertical stripes in the residual plot are rows that share one predicted value, because tree models return leaf averages.</li>
-<li>Summed test predictions are within 1.1% of the actual totals for all four stores (largest gap: OUT003, −1.04%). This supports the store-level recommendations for the test rows only, not for a future quarter.</li>
+<li>Summed test predictions are within 1.1% of the actual totals for all four stores. The difference is predicted minus actual, as a share of actual, so −1.04% for OUT003 means the model predicted 1.04% below the actual total. This supports the store-level recommendations for the test rows only, not for a future quarter.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0245416b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66d04937">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11411,7 +11556,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=143de656">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5f3eacec">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11419,7 +11564,8 @@ Template row (index 0, FD6114) in test split: True
 <div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">seed_rows</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Seed 42 comes from the main search. The loop below adds seeds 7 and 2024 with the same grids.</span>
+<span class="n">seed_rows</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span><span class="s2">"Seed"</span><span class="p">:</span> <span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="s2">"Model"</span><span class="p">:</span> <span class="n">model_name</span><span class="p">,</span> <span class="s2">"Best CV RMSE"</span><span class="p">:</span> <span class="o">-</span><span class="n">result</span><span class="p">[</span><span class="s2">"search"</span><span class="p">]</span><span class="o">.</span><span class="n">best_score_</span><span class="p">}</span>
     <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">tuning_results</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 <span class="p">]</span>
@@ -11436,6 +11582,7 @@ Template row (index 0, FD6114) in test split: True
             <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
             <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
         <span class="p">)</span>
+        <span class="c1"># Run the seed searches on threads, using the joblib threading backend.</span>
         <span class="k">with</span> <span class="n">parallel_config</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s2">"threading"</span><span class="p">):</span>
             <span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
         <span class="n">seed_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"Seed"</span><span class="p">:</span> <span class="n">seed</span><span class="p">,</span> <span class="s2">"Model"</span><span class="p">:</span> <span class="n">model_name</span><span class="p">,</span> <span class="s2">"Best CV RMSE"</span><span class="p">:</span> <span class="o">-</span><span class="n">search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">})</span>
@@ -11567,7 +11714,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ab09fdb2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9234add9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11583,7 +11730,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=463edb1a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b7082dca">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11593,7 +11740,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d6533439">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8ddf590d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11666,7 +11813,7 @@ Template row (index 0, FD6114) in test split: True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2398eea9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9c6dc1a1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11679,6 +11826,10 @@ Template row (index 0, FD6114) in test split: True
 <span class="n">original_predictions</span> <span class="o">=</span> <span class="n">best_pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">reloaded_predictions</span> <span class="o">=</span> <span class="n">reloaded_pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">original_predictions</span><span class="p">,</span> <span class="n">reloaded_predictions</span><span class="p">)</span>
+<span class="c1"># The reloaded model's test RMSE must match the value in the comparison table, so the saved file is the evaluated model.</span>
+<span class="n">reloaded_test_rmse</span> <span class="o">=</span> <span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">reloaded_predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Test RMSE: in memory </span><span class="si">{</span><span class="n">root_mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">original_predictions</span><span class="p">)</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, reloaded </span><span class="si">{</span><span class="n">reloaded_test_rmse</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">reloaded_test_rmse</span> <span class="o">-</span> <span class="n">selected_row</span><span class="p">[</span><span class="s2">"Test RMSE"</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Reloaded predictions identical to in-memory model:"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">original_predictions</span><span class="p">,</span> <span class="n">reloaded_predictions</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Model file size: </span><span class="si">{</span><span class="n">MODEL_PATH</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1_048_576</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Metadata keys:"</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">METADATA_PATH</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">))))</span>
@@ -11698,7 +11849,8 @@ Template row (index 0, FD6114) in test split: True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Reloaded predictions identical to in-memory model: True
+<pre>Test RMSE: in memory 280.314, reloaded 280.314
+Reloaded predictions identical to in-memory model: True
 Model file size: 2.19 MB
 Metadata keys: ['categorical_columns', 'category_values', 'feature_columns', 'model_name', 'numeric_columns', 'observed_category_pairs', 'reference_year', 'target', 'test_metrics', 'training_ranges']
 Reloaded model's prediction for the course template payload: 2,904.05
@@ -11708,7 +11860,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12c45174">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a0e0722b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11716,7 +11868,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Observations</strong></p>
 <ul>
-<li>The reloaded pipeline gives the same predictions as the in-memory model (check: True).</li>
+<li>The reloaded pipeline gives the same predictions as the in-memory model (check: True), and its test RMSE matches the comparison table to within 0.000001.</li>
 <li>The model file is 2.19 MB. Its metadata stores the feature columns, category values, observed category pairs, training ranges (used for warnings), and test metrics.</li>
 <li>The course template's example payload matches data row 0 (FD6114). Row 0 is in the test split (printed in section 4), so this is a held-out row. The reloaded model predicts 2,904.05 for it against the recorded sales of 2,842.40, an error of 61.65 (2.2%). That is one row, so it illustrates the model rather than measuring its accuracy.</li>
 </ul>
@@ -11724,7 +11876,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85319598">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a4892b6f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11762,7 +11914,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1c1df764">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b2011abd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11796,7 +11948,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7f5740da">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18b9abfd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -11930,6 +12082,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
     <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">warnings</span>
 
 
+<span class="c1"># The Docker HEALTHCHECK in backend_files/Dockerfile calls this route, so it must stay cheap and return 200 while the app is up.</span>
 <span class="nd">@superkart_api</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span>
@@ -12003,7 +12156,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=acb9ce09">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=511a5125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12053,7 +12206,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=79648218">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4816e225">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12115,7 +12268,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f4f626a3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bc0580a7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12146,7 +12299,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=537d10ea">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ad9d2c36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12154,7 +12307,8 @@ Reloaded model's prediction for the course template payload: 2,904.05
 <div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">backend_spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">"superkart_backend_app"</span><span class="p">,</span> <span class="n">BACKEND_DIR</span> <span class="o">/</span> <span class="s2">"app.py"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the real backend app.py and call it through Flask's test client, so the served code is tested without a live server.</span>
+<span class="n">backend_spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">"superkart_backend_app"</span><span class="p">,</span> <span class="n">BACKEND_DIR</span> <span class="o">/</span> <span class="s2">"app.py"</span><span class="p">)</span>
 <span class="n">backend_module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">backend_spec</span><span class="p">)</span>
 <span class="n">backend_spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">backend_module</span><span class="p">)</span>
 <span class="n">api_client</span> <span class="o">=</span> <span class="n">backend_module</span><span class="o">.</span><span class="n">superkart_api</span><span class="o">.</span><span class="n">test_client</span><span class="p">()</span>
@@ -12166,6 +12320,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 <span class="n">single_body</span> <span class="o">=</span> <span class="n">single_response</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"POST /v1/predict"</span><span class="p">,</span> <span class="n">single_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">single_body</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">single_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+<span class="c1"># The API must return the same number that the reloaded pipeline gives for the template row.</span>
 <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">single_body</span><span class="p">[</span><span class="s2">"Predicted_Product_Store_Sales_Total"</span><span class="p">]</span> <span class="o">-</span> <span class="nb">round</span><span class="p">(</span><span class="n">template_prediction</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
 </pre></div>
 </div>
@@ -12180,20 +12335,14 @@ Reloaded model's prediction for the course template payload: 2,904.05
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>GET / 200 {'endpoints': ['POST /v1/predict', 'POST /v1/predictbatch'], 'model': 'Tuned Random Forest pipeline (preprocessing and model)', 'status': 'ok'}
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>POST /v1/predict 200 {'Predicted_Product_Store_Sales_Total': 2904.05, 'warnings': []}
+POST /v1/predict 200 {'Predicted_Product_Store_Sales_Total': 2904.05, 'warnings': []}
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bfc75ee6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d6c5478a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12207,7 +12356,7 @@ Reloaded model's prediction for the course template payload: 2,904.05
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c25c5da4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0ff79ab4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12215,7 +12364,8 @@ Reloaded model's prediction for the course template payload: 2,904.05
 <div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">BATCH_PATH</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">batch_file</span><span class="p">:</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Upload the supplied 10-row batch file as multipart form data, as a client would.</span>
+<span class="k">with</span> <span class="n">BATCH_PATH</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">batch_file</span><span class="p">:</span>
     <span class="n">batch_response</span> <span class="o">=</span> <span class="n">api_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
         <span class="s2">"/v1/predictbatch"</span><span class="p">,</span>
         <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">"file"</span><span class="p">:</span> <span class="p">(</span><span class="n">batch_file</span><span class="p">,</span> <span class="n">BATCH_PATH</span><span class="o">.</span><span class="n">name</span><span class="p">)},</span>
@@ -12234,9 +12384,11 @@ Reloaded model's prediction for the course template payload: 2,904.05
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Warnings (values outside the training range):"</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">batch_body</span><span class="p">[</span><span class="s2">"warnings"</span><span class="p">]))</span>
 <span class="k">assert</span> <span class="n">batch_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+<span class="c1"># Rows 5 and 10 are the Supermarket Type3 rows, which the model was not trained on, so they must be rejected.</span>
 <span class="k">assert</span> <span class="p">[</span><span class="n">error</span><span class="p">[</span><span class="s2">"row"</span><span class="p">]</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">batch_body</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 
 <span class="n">batch_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">BATCH_PATH</span><span class="p">)</span>
+<span class="c1"># Predict the valid rows directly with the pipeline and compare them with the API output.</span>
 <span class="n">error_positions</span> <span class="o">=</span> <span class="p">{</span><span class="n">error</span><span class="p">[</span><span class="s2">"row"</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">batch_body</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]}</span>
 <span class="n">valid_positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">position</span> <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch_frame</span><span class="p">))</span> <span class="k">if</span> <span class="n">position</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">error_positions</span><span class="p">]</span>
 <span class="n">direct_predictions</span> <span class="o">=</span> <span class="n">reloaded_pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">batch_frame</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">valid_positions</span><span class="p">][</span><span class="n">FEATURE_COLUMNS</span><span class="p">])</span>
@@ -12463,7 +12615,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91147ea0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ff6efb78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12478,7 +12630,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f9cc11b8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d1cf553b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12486,9 +12638,11 @@ Rows received: 10 | rows predicted: 8
 <div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">bad_store_response</span> <span class="o">=</span> <span class="n">api_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/v1/predict"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="o">**</span><span class="n">template_payload</span><span class="p">,</span> <span class="s2">"Store_Type"</span><span class="p">:</span> <span class="s2">"Supermarket Type3"</span><span class="p">})</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># An unsupported store type must be rejected with HTTP 400, not predicted.</span>
+<span class="n">bad_store_response</span> <span class="o">=</span> <span class="n">api_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/v1/predict"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="o">**</span><span class="n">template_payload</span><span class="p">,</span> <span class="s2">"Store_Type"</span><span class="p">:</span> <span class="s2">"Supermarket Type3"</span><span class="p">})</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">bad_store_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">bad_store_response</span><span class="o">.</span><span class="n">get_json</span><span class="p">())</span>
 
+<span class="c1"># A payload missing a required feature must also be rejected with HTTP 400.</span>
 <span class="n">missing_column_payload</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">template_payload</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s2">"Store_Age_Years"</span><span class="p">}</span>
 <span class="n">missing_response</span> <span class="o">=</span> <span class="n">api_client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">"/v1/predict"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">missing_column_payload</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">missing_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">missing_response</span><span class="o">.</span><span class="n">get_json</span><span class="p">())</span>
@@ -12514,7 +12668,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9083d1eb">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d913c904">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12530,7 +12684,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e3e20da6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f59f456a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12541,7 +12695,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fb0d44a5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89fd196d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12572,7 +12726,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dc5711fb">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=73016fdf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12735,6 +12889,7 @@ Rows received: 10 | rows predicted: 8
             <span class="p">)</span>
         <span class="n">submitted</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">form_submit_button</span><span class="p">(</span><span class="s2">"Predict sales"</span><span class="p">)</span>
 
+    <span class="c1"># Streamlit reruns the script on every widget change, so the API is called only when the button was pressed.</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">submitted</span><span class="p">:</span>
         <span class="k">return</span>
     <span class="c1"># Build the raw form values first; build_model_features turns them into the API's 10 features.</span>
@@ -12818,6 +12973,7 @@ Rows received: 10 | rows predicted: 8
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Streamlit requires set_page_config to be the first Streamlit call on the page.</span>
     <span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">page_title</span><span class="o">=</span><span class="s2">"SuperKart Sales Predictor"</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s2">"wide"</span><span class="p">)</span>
     <span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"SuperKart Sales Predictor"</span><span class="p">)</span>
     <span class="n">st</span><span class="o">.</span><span class="n">caption</span><span class="p">(</span><span class="s2">"Predicts Product_Store_Sales_Total with the selected pipeline served by the API."</span><span class="p">)</span>
@@ -12859,7 +13015,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a6c78ef3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c3ba4ef3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12910,7 +13066,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dad94104">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c5c13806">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12949,7 +13105,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4357e117">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5b1aa905">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12980,7 +13136,7 @@ Rows received: 10 | rows predicted: 8
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2b7c2d22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cb51162c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -12988,7 +13144,8 @@ Rows received: 10 | rows predicted: 8
 <div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">frontend_spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">"superkart_frontend_app"</span><span class="p">,</span> <span class="n">FRONTEND_DIR</span> <span class="o">/</span> <span class="s2">"app.py"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load the real frontend app.py to reuse its feature-building function, without starting the Streamlit UI.</span>
+<span class="n">frontend_spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">"superkart_frontend_app"</span><span class="p">,</span> <span class="n">FRONTEND_DIR</span> <span class="o">/</span> <span class="s2">"app.py"</span><span class="p">)</span>
 <span class="n">frontend_module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">frontend_spec</span><span class="p">)</span>
 <span class="n">frontend_spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">frontend_module</span><span class="p">)</span>
 
@@ -13004,6 +13161,7 @@ Rows received: 10 | rows predicted: 8
     <span class="s2">"Store_Location_City_Type"</span><span class="p">:</span> <span class="s2">"Tier 2"</span><span class="p">,</span>
     <span class="s2">"Store_Establishment_Year"</span><span class="p">:</span> <span class="mi">2009</span><span class="p">,</span>
 <span class="p">}</span>
+<span class="c1"># Raw form fields (including the store year) become the derived model features the backend expects.</span>
 <span class="n">form_features</span> <span class="o">=</span> <span class="n">frontend_module</span><span class="o">.</span><span class="n">build_model_features</span><span class="p">(</span><span class="n">form_inputs</span><span class="p">,</span> <span class="n">reference_year</span><span class="o">=</span><span class="n">REFERENCE_YEAR</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Form inputs -&gt; model features:"</span><span class="p">,</span> <span class="n">form_features</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">form_features</span> <span class="o">==</span> <span class="n">template_payload</span>
@@ -13024,14 +13182,20 @@ Rows received: 10 | rows predicted: 8
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Form inputs -&gt; model features: {'Product_Weight': 12.66, 'Product_Sugar_Content': 'Low Sugar', 'Product_Allocated_Area': 0.027, 'Product_MRP': 117.08, 'Store_Size': 'Medium', 'Store_Location_City_Type': 'Tier 2', 'Store_Type': 'Supermarket Type2', 'Product_Id_char': 'FD', 'Store_Age_Years': 16, 'Product_Type_Category': 'Non Perishables'}
-Form features sent to the API: 200 {'Predicted_Product_Store_Sales_Total': 2904.05, 'warnings': []}
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Form features sent to the API: 200 {'Predicted_Product_Store_Sales_Total': 2904.05, 'warnings': []}
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88631c83">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6d2ebf75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13047,7 +13211,7 @@ Form features sent to the API: 200 {'Predicted_Product_Store_Sales_Total': 2904.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=aea7bc68">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0d51ee4f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13055,6 +13219,7 @@ Form features sent to the API: 200 {'Predicted_Product_Store_Sales_Total': 2904.
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="10.-Deployment---containers-and-pushing-to-GitHub">10. Deployment - containers and pushing to GitHub<a class="anchor-link" href="#10.-Deployment---containers-and-pushing-to-GitHub">¶</a></h1><p>The API and the app run as two Docker containers on a shared network, <code>superkart-net</code>. The frontend reaches the backend by container name. On the local machine, both containers publish their ports on <code>127.0.0.1</code> only. In the Codespace, the same ports are forwarded by GitHub, and the forwarded links are public when the ports are set to Public.</p>
 <p>Each Dockerfile has a <code>HEALTHCHECK</code>, so Docker reports a container as <code>healthy</code> only after its app answers. The cell below builds both images from the files written above, which includes the model saved in section 7.6. It then starts the containers, waits for both to become healthy, and checks that the backend container serves the same model file as this notebook.</p>
+<h3 id="Deployment-route">Deployment route<a class="anchor-link" href="#Deployment-route">¶</a></h3><p>The course deployment instructions specify a GitHub Codespace, so this submission deploys both containers there. The course Evaluation Rubric also lists Hugging Face Blank Docker Space share links for the backend and frontend. This submission does not provide those Space links. The public Codespace links in the Links table are the deployment evidence, and they open only while the Codespace is running.</p>
 <h3 id="GitHub-Codespace-route">GitHub Codespace route<a class="anchor-link" href="#GitHub-Codespace-route">¶</a></h3><p>The course deployment instructions run the same two containers inside a GitHub Codespace. The GitHub repository for that route uses the same layout as this project: <code>data/</code> (the two course CSV files), <code>full_code/</code> (this notebook and its files), and <code>.devcontainer/</code> at the root. The <code>.devcontainer</code> configuration installs Docker inside the Codespace. To start the containers there, open a terminal in the Codespace and run:</p>
 <div class="highlight"><pre><span></span>bash<span class="w"> </span>full_code/deploy_containers.sh
 </pre></div>
@@ -13081,7 +13246,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7e9f4a1c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c8d93ce5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13158,7 +13323,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3b86695e">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0239a912">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13259,8 +13424,14 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Built superkart-full-backend:local in 0.3 s
-Built superkart-full-frontend:local in 0.2 s
+<pre>Built superkart-full-backend:local in 8.2 s
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Built superkart-full-frontend:local in 6.1 s
 </pre>
 </div>
 </div>
@@ -13269,16 +13440,16 @@ Built superkart-full-frontend:local in 0.2 s
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Backend container health: healthy
 Frontend container health: healthy
+NAMES                     IMAGE                           STATUS                   PORTS
+superkart-full-frontend   superkart-full-frontend:local   Up 6 seconds (healthy)   127.0.0.1:7870-&gt;7860/tcp
+superkart-full-backend    superkart-full-backend:local    Up 6 seconds (healthy)   127.0.0.1:7860-&gt;7860/tcp
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>NAMES                     IMAGE                           STATUS                   PORTS
-superkart-full-frontend   superkart-full-frontend:local   Up 6 seconds (healthy)   127.0.0.1:7870-&gt;7860/tcp
-superkart-full-backend    superkart-full-backend:local    Up 7 seconds (healthy)   127.0.0.1:7860-&gt;7860/tcp
-Model SHA-256 (notebook file):     17182dcd824758305b6f60fd63a9ad21582b9044417bf04ed52a4ac1a03711f5
+<pre>Model SHA-256 (notebook file):     17182dcd824758305b6f60fd63a9ad21582b9044417bf04ed52a4ac1a03711f5
 Model SHA-256 (backend container): 17182dcd824758305b6f60fd63a9ad21582b9044417bf04ed52a4ac1a03711f5
 </pre>
 </div>
@@ -13286,7 +13457,7 @@ Model SHA-256 (backend container): 17182dcd824758305b6f60fd63a9ad21582b9044417bf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d480e75d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6622d238">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13301,7 +13472,7 @@ Model SHA-256 (backend container): 17182dcd824758305b6f60fd63a9ad21582b9044417bf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f971026c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d7b53584">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13319,17 +13490,17 @@ Model SHA-256 (backend container): 17182dcd824758305b6f60fd63a9ad21582b9044417bf
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d7d6f544">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=eebe49d4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The Streamlit <code>AppTest</code> harness logs a "missing ScriptRunContext" message on every run because it executes the script outside a browser session. This is a harness message, not an app error. The next cell drops only that message, counts how many were dropped, and prints the count. All other log records still appear.</p>
+<p>The Streamlit <code>AppTest</code> harness logs a "missing ScriptRunContext" message because it executes the script outside a browser session. This is a harness message, not an app error. The next cell drops only that message, counts how many were dropped, and prints the count. All other log records still appear.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77ce03b7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=735174d6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13352,8 +13523,10 @@ Model SHA-256 (backend container): 17182dcd824758305b6f60fd63a9ad21582b9044417bf
 
 
 <span class="n">harness_filter</span> <span class="o">=</span> <span class="n">HarnessLogFilter</span><span class="p">()</span>
+<span class="c1"># Only the harness message is filtered. Real script errors still appear in the exception and error counts below.</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">"streamlit.runtime.scriptrunner_utils.script_run_context"</span><span class="p">)</span><span class="o">.</span><span class="n">addFilter</span><span class="p">(</span><span class="n">harness_filter</span><span class="p">)</span>
 
+<span class="c1"># Run the Streamlit script headlessly to check the real app code without opening a browser.</span>
 <span class="n">streamlit_test</span> <span class="o">=</span> <span class="n">AppTest</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="nb">str</span><span class="p">((</span><span class="n">FRONTEND_DIR</span> <span class="o">/</span> <span class="s2">"app.py"</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()),</span> <span class="n">default_timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Exceptions raised by the Streamlit script:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">streamlit_test</span><span class="o">.</span><span class="n">exception</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Error messages on first load:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">streamlit_test</span><span class="o">.</span><span class="n">error</span><span class="p">))</span>
@@ -13361,6 +13534,7 @@ Model SHA-256 (backend container): 17182dcd824758305b6f60fd63a9ad21582b9044417bf
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">streamlit_test</span><span class="o">.</span><span class="n">exception</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Tabs:"</span><span class="p">,</span> <span class="p">[</span><span class="n">tab</span><span class="o">.</span><span class="n">label</span> <span class="k">for</span> <span class="n">tab</span> <span class="ow">in</span> <span class="n">streamlit_test</span><span class="o">.</span><span class="n">tabs</span><span class="p">])</span>
 
+<span class="c1"># Click Predict sales and check the value the UI displays, which must come from the running backend.</span>
 <span class="n">predict_buttons</span> <span class="o">=</span> <span class="p">[</span><span class="n">button</span> <span class="k">for</span> <span class="n">button</span> <span class="ow">in</span> <span class="n">streamlit_test</span><span class="o">.</span><span class="n">button</span> <span class="k">if</span> <span class="n">button</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="s2">"Predict sales"</span><span class="p">]</span>
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">predict_buttons</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"The Predict sales button was not found"</span>
 <span class="n">predict_buttons</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">click</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -13394,7 +13568,7 @@ The app displays the template prediction, obtained through the running backend.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91a8141f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bb066097">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13407,7 +13581,7 @@ The app displays the template prediction, obtained through the running backend.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=770f6e57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88108b2b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13415,7 +13589,8 @@ The app displays the template prediction, obtained through the running backend.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">BACKEND_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"SUPERKART_BACKEND_URL"</span><span class="p">,</span> <span class="s2">"http://localhost:7860"</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Use the local container by default. SUPERKART_BACKEND_URL can point at any running backend.</span>
+<span class="n">BACKEND_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"SUPERKART_BACKEND_URL"</span><span class="p">,</span> <span class="s2">"http://localhost:7860"</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Backend URL:"</span><span class="p">,</span> <span class="n">BACKEND_URL</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
@@ -13441,12 +13616,14 @@ The app displays the template prediction, obtained through the running backend.
 <span class="nb">print</span><span class="p">(</span><span class="s2">"GET frontend /_stcore/health"</span><span class="p">,</span> <span class="n">frontend_response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">frontend_response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 <span class="k">assert</span> <span class="n">frontend_response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"ok"</span>
 
+<span class="c1"># Send the template payload over HTTP and check the result against the reloaded model.</span>
 <span class="n">live_single</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BACKEND_URL</span><span class="si">}</span><span class="s2">/v1/predict"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">template_payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">live_single</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 <span class="n">live_single_body</span> <span class="o">=</span> <span class="n">live_single</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"POST /v1/predict"</span><span class="p">,</span> <span class="n">live_single</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">live_single_body</span><span class="p">)</span>
 <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">live_single_body</span><span class="p">[</span><span class="s2">"Predicted_Product_Store_Sales_Total"</span><span class="p">]</span> <span class="o">-</span> <span class="nb">round</span><span class="p">(</span><span class="n">template_prediction</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mf">0.01</span>
 
+<span class="c1"># Upload the batch file over HTTP. The response is compared with the in-process test client below.</span>
 <span class="k">with</span> <span class="n">BATCH_PATH</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">batch_file</span><span class="p">:</span>
     <span class="n">live_batch</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BACKEND_URL</span><span class="si">}</span><span class="s2">/v1/predictbatch"</span><span class="p">,</span>
@@ -13461,6 +13638,7 @@ The app displays the template prediction, obtained through the running backend.
 <span class="k">assert</span> <span class="n">live_batch_body</span><span class="p">[</span><span class="s2">"rows_received"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">10</span>
 <span class="k">assert</span> <span class="n">live_batch_body</span><span class="p">[</span><span class="s2">"rows_predicted"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">8</span>
 <span class="k">assert</span> <span class="p">[</span><span class="n">error</span><span class="p">[</span><span class="s2">"row"</span><span class="p">]</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">live_batch_body</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]]</span> <span class="o">==</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="c1"># The HTTP response must equal the in-process test client response.</span>
 <span class="k">assert</span> <span class="n">live_batch_body</span><span class="p">[</span><span class="s2">"predictions"</span><span class="p">]</span> <span class="o">==</span> <span class="n">batch_body</span><span class="p">[</span><span class="s2">"predictions"</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"HTTP batch predictions match the in-process test client exactly."</span><span class="p">)</span>
 </pre></div>
@@ -13478,7 +13656,13 @@ The app displays the template prediction, obtained through the running backend.
 <pre>Backend URL: http://localhost:7860
 GET / 200 {'endpoints': ['POST /v1/predict', 'POST /v1/predictbatch'], 'model': 'Tuned Random Forest pipeline (preprocessing and model)', 'status': 'ok'}
 GET frontend /_stcore/health 200 ok
-POST /v1/predict 200 {'Predicted_Product_Store_Sales_Total': 2904.05, 'warnings': []}
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>POST /v1/predict 200 {'Predicted_Product_Store_Sales_Total': 2904.05, 'warnings': []}
 POST /v1/predictbatch 200
 Rows received: 10 | rows predicted: 8
 Rows that could not be predicted: [{'message': "Store_Type 'Supermarket Type3' is not supported; expected one of: Departmental Store, Food Mart, Supermarket Type1, Supermarket Type2", 'row': 5}, {'message': "Store_Type 'Supermarket Type3' is not supported; expected one of: Departmental Store, Food Mart, Supermarket Type1, Supermarket Type2", 'row': 10}]
@@ -13489,7 +13673,7 @@ HTTP batch predictions match the in-process test client exactly.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58d6c85c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6ff01d72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13504,7 +13688,7 @@ HTTP batch predictions match the in-process test client exactly.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3319b0f7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bf4627e6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13512,7 +13696,8 @@ HTTP batch predictions match the in-process test client exactly.
 <div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">frontend_module</span><span class="o">.</span><span class="n">API_URL</span> <span class="o">=</span> <span class="n">BACKEND_URL</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Point the frontend's batch helper at the running backend.</span>
+<span class="n">frontend_module</span><span class="o">.</span><span class="n">API_URL</span> <span class="o">=</span> <span class="n">BACKEND_URL</span>
 <span class="n">batch_ui_body</span> <span class="o">=</span> <span class="n">frontend_module</span><span class="o">.</span><span class="n">request_batch_prediction</span><span class="p">(</span><span class="n">BATCH_PATH</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">(),</span> <span class="n">BATCH_PATH</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 <span class="n">batch_ui_summary</span> <span class="o">=</span> <span class="n">frontend_module</span><span class="o">.</span><span class="n">summarize_batch_response</span><span class="p">(</span><span class="n">batch_ui_body</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Rows received: </span><span class="si">{</span><span class="n">batch_ui_summary</span><span class="p">[</span><span class="s1">'rows_received'</span><span class="p">]</span><span class="si">}</span><span class="s2"> | rows predicted: </span><span class="si">{</span><span class="n">batch_ui_summary</span><span class="p">[</span><span class="s1">'rows_predicted'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -13752,7 +13937,7 @@ Predictions shown in the batch tab:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3dcbe9ba">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=be87dbc4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13766,7 +13951,7 @@ Predictions shown in the batch tab:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d36e9547">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e9c2cba7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13774,7 +13959,8 @@ Predictions shown in the batch tab:
 <div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">PUBLIC_BACKEND_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Public Codespace URLs. Environment variables can override them.</span>
+<span class="n">PUBLIC_BACKEND_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s2">"SUPERKART_PUBLIC_BACKEND_URL"</span><span class="p">,</span> <span class="s2">"https://weary-tomb-v7gq949745j26647-7860.app.github.dev"</span>
 <span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)</span>
 <span class="n">PUBLIC_FRONTEND_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
@@ -13805,6 +13991,7 @@ Predictions shown in the batch tab:
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Public frontend /_stcore/health"</span><span class="p">,</span> <span class="n">public_health</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">public_health</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 <span class="k">assert</span> <span class="n">public_health</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"ok"</span>
 
+<span class="c1"># The public backend must return the same template prediction as the local reloaded model.</span>
 <span class="n">public_predict</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">PUBLIC_BACKEND_URL</span><span class="si">}</span><span class="s2">/v1/predict"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">template_payload</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">public_predict</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 <span class="n">public_predict_body</span> <span class="o">=</span> <span class="n">public_predict</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -13861,13 +14048,7 @@ Public frontend URL: https://weary-tomb-v7gq949745j26647-7870.app.github.dev
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Public POST /v1/predict 200 {'Predicted_Product_Store_Sales_Total': 2904.05, 'warnings': []}
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Public POST /v1/predictbatch 200
+Public POST /v1/predictbatch 200
 Rows received: 10 | rows predicted: 8
 Public batch predictions match the in-process test client exactly.
 </pre>
@@ -13876,7 +14057,7 @@ Public batch predictions match the in-process test client exactly.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dbba9e23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32a97b28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13892,7 +14073,7 @@ Public batch predictions match the in-process test client exactly.
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48aa451f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c351e5fb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13903,7 +14084,7 @@ Public batch predictions match the in-process test client exactly.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9b973baa">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dfbadef7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14004,7 +14185,7 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c782d208">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=de86b306">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14020,7 +14201,7 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ae1da99e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=86bc27b7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14030,7 +14211,7 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=420bc99a">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34f3c1f1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14237,7 +14418,7 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3a642fdd">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c6bea8e7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14451,7 +14632,7 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=edbe438e">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f5b84609">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14459,7 +14640,8 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 <div class="jp-InputPrompt jp-InputArea-prompt">In [50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">pytest_run</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Run the pytest suite in a child process and show its summary here.</span>
+<span class="n">pytest_run</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
     <span class="p">[</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">"-m"</span><span class="p">,</span> <span class="s2">"pytest"</span><span class="p">,</span> <span class="s2">"tests"</span><span class="p">,</span> <span class="s2">"-q"</span><span class="p">,</span> <span class="s2">"-p"</span><span class="p">,</span> <span class="s2">"no:cacheprovider"</span><span class="p">,</span> <span class="s2">"--color=no"</span><span class="p">],</span>
     <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -14483,14 +14665,14 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.............................................                            [100%]
-45 passed in 2.18s
+45 passed in 1.70s
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12ceb855">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d5a0d332">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14506,7 +14688,7 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cf793581">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1dc72a9d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14521,7 +14703,7 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 <li><strong>Batch file:</strong> 10 rows received and 8 predicted. Rows 5 and 10 use <code>Supermarket Type3</code>, which is not in the training data, so they are rejected with row-level errors. The API lists seven warnings: five store ages of 5 to 14 years (rows 3, 5, 6, 9, and 10), all below the training minimum of 16 years; a product weight of 3.5 (row 9), below the training minimum of 4.0; and a DR product labelled Perishables (row 8), a pair that never occurs in training. Rows 5 and 10 are rejected, so their warnings do not change any prediction. The batch API and the direct pipeline agree (largest gap 0.0000).</li>
 <li><strong>Frontend:</strong> the Streamlit app loads with 0 exceptions and 0 error messages on first load.</li>
 </ul>
-<h3 id="Selection-and-robustness">Selection and robustness<a class="anchor-link" href="#Selection-and-robustness">¶</a></h3><p>The test split plays no part in choosing the model. The development history is disclosed under limitations. Selection uses cross-validation on the training split, and the rule is the lowest tuned CV RMSE. Random Forest leads XGBoost by 12.769 CV RMSE. Both ensembles also beat the tuned Decision Tree on the test set (280.314 and 289.041 against 296.078), so the ensemble advantage holds on held-out data. The seed check in section 7.5 repeats the comparison with seeds 7 and 2024. Random Forest has the lowest CV RMSE on all three seeds, with margins over XGBoost of 5.295 (seed 7), 12.769 (seed 42), and 7.749 (seed 2024). The seed-7 margin is narrow, so the ranking is stable but not wide.</p>
+<h3 id="Selection-and-robustness">Selection and robustness<a class="anchor-link" href="#Selection-and-robustness">¶</a></h3><p>In the final run, selection uses cross-validation on the training split only, so the test split is not used to choose the model. The development history is disclosed under limitations. Selection uses cross-validation on the training split, and the rule is the lowest tuned CV RMSE. Random Forest leads XGBoost by 12.769 CV RMSE. Both ensembles also beat the tuned Decision Tree on the test set (280.314 and 289.041 against 296.078), so the ensemble advantage holds on held-out data. The seed check in section 7.5 repeats the comparison with seeds 7 and 2024. Random Forest has the lowest CV RMSE on all three seeds, with margins over XGBoost of 5.295 (seed 7), 12.769 (seed 42), and 7.749 (seed 2024). The seed-7 margin is narrow, so the ranking is stable but not wide.</p>
 <h3 id="Business-recommendations">Business recommendations<a class="anchor-link" href="#Business-recommendations">¶</a></h3><ol>
 <li><strong>Plan by store and period, using summed predictions.</strong> Each row is one product's sales total in one store for the period covered by the data. Summing predictions over a store's products estimates the store's revenue for a comparable period under similar conditions. The data has no date column, so the quarter itself cannot be modelled. Use dated sales history before planning a specific quarter.</li>
 <li><strong>Use the error band to set review thresholds.</strong> Test RMSE of 280.314 is about 8% of mean sales (3,464), and test MAE of 116.493 is about 3%. Use the RMSE scale as the expected error when setting review thresholds for forecasts and stock buffers, and send larger deviations to manual checks.</li>
@@ -14539,6 +14721,14 @@ Public backend, GET / (https://weary-tomb-v7gq949745j26647-7860.app.github.dev),
 <li><strong>Development history:</strong> earlier exploratory rounds printed test-split metrics and widened the grids, so the test split was seen during development. The grids and results reported here are the final ones. The single 20% test split (1,753 rows) also carries sampling noise.</li>
 <li><strong>Unseen categories are rejected:</strong> this is a deliberate choice that avoids silent encoding. It is not a model improvement. A product-prefix and category pair that never occurs in training is not rejected, because each field is valid on its own. It is predicted and flagged with a warning, so the prediction should be treated with caution.</li>
 </ul>
+<h3 id="Next-steps">Next steps<a class="anchor-link" href="#Next-steps">¶</a></h3><ol>
+<li><strong>Add dated sales records.</strong> With order or period dates, the model can be trained and tested by quarter, and summed predictions can be checked against actual quarterly totals.</li>
+<li><strong>Add <code>Supermarket Type3</code> training examples.</strong> Then rerun the batch file, so rows 5 and 10 are scored instead of rejected.</li>
+<li><strong>Confirm the two assumptions.</strong> Check the Perishables mapping in section 2.1 and the store-age reference year (2025) with the business team.</li>
+<li><strong>Widen the grids at the four edge values.</strong> Accept a new setting only if its CV RMSE is below 282.171, the current tuned Random Forest value.</li>
+<li><strong>Review large predictions.</strong> Predictions above 5,000 have a mean residual of +93.6 (section 7.4), so check whether a separate model or a review rule is needed for that band.</li>
+<li><strong>Check out-of-range records before use.</strong> Store ages below 16 years and product weights below 4.0 are outside the training range, so a person should check them before the prediction is used.</li>
+</ol>
 </div>
 </div>
 </div>
