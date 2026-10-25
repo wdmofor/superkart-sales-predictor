@@ -1,12 +1,20 @@
 """Capture screenshots of the running local SuperKart containers.
 
-Run with the containers from section 10 of the notebook already healthy:
+Run with the containers from section 10 already healthy (local backup run):
 
     python screenshots/capture_screenshots.py
 
+Public Codespace run, using the links in the notebook's Links table:
+
+    python screenshots/capture_screenshots.py \
+        --backend-url https://<codespace>-7860.app.github.dev/ \
+        --frontend-url https://<codespace>-7870.app.github.dev/ \
+        --out-dir screenshots/public
+
 Requires Playwright for Python and a local Chrome at CHROME_PATH.
-Writes four PNG files and capture_record.json into this folder.
+Writes four PNG files and capture_record.json into the output folder.
 """
+import argparse
 import hashlib
 import json
 from datetime import datetime, timezone
@@ -18,8 +26,6 @@ OUT = Path(__file__).resolve().parent
 FULL_CODE = OUT.parent
 BATCH_CSV = FULL_CODE.parent / "data" / "Batch_Data_SuperKart.csv"
 MODEL_FILE = FULL_CODE / "backend_files" / "superkart_model.joblib"
-BACKEND = "http://127.0.0.1:7860/"
-FRONTEND = "http://127.0.0.1:7870/"
 CHROME_PATH = "/usr/bin/google-chrome"
 
 PAYLOAD = {
@@ -47,7 +53,7 @@ async (payload) => {
   document.body.style.fontFamily = 'sans-serif';
   document.body.style.margin = '16px';
   const h = document.createElement('h3');
-  h.textContent = 'POST http://127.0.0.1:7860/v1/predict (HTTP ' + res.status + ')';
+  h.textContent = 'POST ' + location.origin + '/v1/predict (HTTP ' + res.status + ')';
   const req = document.createElement('pre');
   req.textContent = JSON.stringify(payload, null, 2);
   const out = document.createElement('pre');
@@ -58,31 +64,49 @@ async (payload) => {
 """
 
 
+PORT_WARNING_TITLE = "Codespaces Access Port"
+
+
+def goto_app(page, url: str) -> None:
+    """Open an app URL, clicking through GitHub's port warning page if it appears."""
+    page.goto(url)
+    if page.title() == PORT_WARNING_TITLE:
+        with page.expect_navigation():
+            page.get_by_text("Continue", exact=True).click()
+    page.wait_for_load_state("load")
+
+
 def main() -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
+    parser = argparse.ArgumentParser(description="Capture SuperKart app screenshots.")
+    parser.add_argument("--backend-url", default="http://127.0.0.1:7860/")
+    parser.add_argument("--frontend-url", default="http://127.0.0.1:7870/")
+    parser.add_argument("--out-dir", default=str(OUT))
+    args = parser.parse_args()
+    out = Path(args.out_dir)
+    out.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=CHROME_PATH, headless=True)
         page = browser.new_page(viewport={"width": 1000, "height": 260})
 
-        page.goto(BACKEND)
+        goto_app(page, args.backend_url)
         page.wait_for_load_state("networkidle")
-        page.screenshot(path=str(OUT / "backend_root.png"))
+        page.screenshot(path=str(out / "backend_root.png"))
 
         page.set_viewport_size({"width": 900, "height": 620})
         result = page.evaluate(RENDER_JS, PAYLOAD)
         assert result["status"] == 200, result
         template_prediction = json.loads(result["body"])["Predicted_Product_Store_Sales_Total"]
         assert f"{template_prediction:.2f}" == "2904.05", result
-        page.screenshot(path=str(OUT / "backend_predict_response.png"))
+        page.screenshot(path=str(out / "backend_predict_response.png"))
         print("backend response:", result["body"].strip())
 
         page.set_viewport_size({"width": 1280, "height": 1150})
-        page.goto(FRONTEND)
+        goto_app(page, args.frontend_url)
         page.get_by_role("button", name="Predict sales").wait_for(timeout=60000)
         page.get_by_role("button", name="Predict sales").click()
         page.get_by_text("Predicted Product_Store_Sales_Total").wait_for(timeout=60000)
         assert page.get_by_text("2,904.05").count() >= 1
-        page.screenshot(path=str(OUT / "frontend_single_prediction.png"))
+        page.screenshot(path=str(out / "frontend_single_prediction.png"))
         print("frontend single prediction: 2,904.05")
 
         page.get_by_role("tab", name="Batch CSV").click()
@@ -90,21 +114,25 @@ def main() -> None:
         page.get_by_role("button", name="Predict batch").wait_for(timeout=60000)
         page.get_by_role("button", name="Predict batch").click()
         page.get_by_text("Rows received: 10, predicted: 8").wait_for(timeout=60000)
-        page.get_by_text("Rows received: 10, predicted: 8").scroll_into_view_if_needed()
+        page.locator('[data-testid="stDataFrame"]').nth(2).wait_for(timeout=60000)
+        page.wait_for_timeout(3000)
         page.set_viewport_size({"width": 1280, "height": 1300})
-        page.screenshot(path=str(OUT / "frontend_batch_tab.png"))
+        page.wait_for_timeout(1000)
+        page.screenshot(path=str(out / "frontend_batch_tab.png"), full_page=True)
         print("frontend batch: Rows received: 10, predicted: 8")
         browser.close()
 
     record = {
         "captured_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "backend_url": args.backend_url,
+        "frontend_url": args.frontend_url,
         "model_sha256": hashlib.sha256(MODEL_FILE.read_bytes()).hexdigest(),
         "template_prediction": template_prediction,
         "frontend_single_prediction_text": "2,904.05",
         "batch_rows_received": 10,
         "batch_rows_predicted": 8,
     }
-    (OUT / "capture_record.json").write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
+    (out / "capture_record.json").write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
     print("wrote capture_record.json")
 
 
