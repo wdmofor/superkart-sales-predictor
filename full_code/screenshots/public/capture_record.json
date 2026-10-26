@@ -1,0 +1,13 @@
+{
+  "captured_at_utc": "2026-10-26T01:12:32+00:00",
+  "screenshot_method": "headed Chrome window grabbed from a virtual display, address bar included",
+  "backend_url": "https://weary-tomb-v7gq949745j26647-7860.app.github.dev/",
+  "frontend_url": "https://weary-tomb-v7gq949745j26647-7870.app.github.dev/",
+  "model_sha256": "17182dcd824758305b6f60fd63a9ad21582b9044417bf04ed52a4ac1a03711f5",
+  "template_prediction": 2904.05,
+  "frontend_single_prediction_text": "2,904.05",
+  "batch_rows_received": 10,
+  "batch_rows_predicted": 8,
+  "batch_download_file": "superkart_predictions_downloaded.csv",
+  "batch_download_rows": 8
+}
