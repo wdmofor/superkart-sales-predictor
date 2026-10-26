@@ -1,5 +1,5 @@
 # Flask API and WSGI server.
-flask==3.1.1
+flask==3.1.2
 gunicorn==23.0.0
 # Numerical and model libraries, pinned to the versions the notebook trained with.
 numpy==2.0.2

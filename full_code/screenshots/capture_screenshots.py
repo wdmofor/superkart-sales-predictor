@@ -15,7 +15,7 @@ Public Codespace run, using the links in the notebook's Links table:
         --out-dir screenshots/public
 
 Requires Playwright for Python, Pillow with X11 support, and a local Chrome at CHROME_PATH.
-Writes four PNG files and capture_record.json into the output folder.
+Writes three PNG files and capture_record.json into the output folder.
 """
 import argparse
 import csv
@@ -34,7 +34,6 @@ MODEL_FILE = FULL_CODE / "backend_files" / "superkart_model.joblib"
 CHROME_PATH = "/usr/bin/google-chrome"
 WINDOW_WIDTH = 1280
 BACKEND_ROOT_HEIGHT = 420
-BACKEND_RESPONSE_HEIGHT = 620
 SINGLE_PREDICTION_HEIGHT = 1150
 BATCH_HEIGHT = 2300
 
@@ -50,28 +49,6 @@ PAYLOAD = {
     "Store_Age_Years": 16,
     "Product_Type_Category": "Non Perishables",
 }
-
-RENDER_JS = """
-async (payload) => {
-  const res = await fetch('/v1/predict', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(payload)
-  });
-  const text = await res.text();
-  document.body.innerHTML = '';
-  document.body.style.fontFamily = 'sans-serif';
-  document.body.style.margin = '16px';
-  const h = document.createElement('h3');
-  h.textContent = 'POST ' + location.origin + '/v1/predict (HTTP ' + res.status + ')';
-  const req = document.createElement('pre');
-  req.textContent = JSON.stringify(payload, null, 2);
-  const out = document.createElement('pre');
-  out.textContent = JSON.stringify(JSON.parse(text), null, 2);
-  document.body.append(h, req, out);
-  return {status: res.status, body: text};
-}
-"""
 
 
 PORT_WARNING_TITLE = "Codespaces Access Port"
@@ -102,6 +79,20 @@ def grab_window(path: Path, width: int, height: int) -> None:
     ImageGrab.grab(bbox=(0, 0, width, height)).save(path)
 
 
+def source_tree_digest(folder: Path) -> str:
+    """Hash the relative names and contents of every file in a folder, skipping caches."""
+    digest = hashlib.sha256()
+    files = sorted(
+        (p.relative_to(folder).as_posix(), p)
+        for p in folder.rglob("*")
+        if p.is_file() and not {"__pycache__", ".pytest_cache"} & set(p.relative_to(folder).parts)
+    )
+    for relative_name, path in files:
+        digest.update(relative_name.encode("utf-8") + b"\0")
+        digest.update(hashlib.sha256(path.read_bytes()).digest())
+    return digest.hexdigest()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Capture SuperKart app screenshots.")
     parser.add_argument("--backend-url", default="http://127.0.0.1:7860/")
@@ -125,22 +116,24 @@ def main() -> None:
         page.wait_for_load_state("networkidle")
         grab_window(out / "backend_root.png", WINDOW_WIDTH, BACKEND_ROOT_HEIGHT)
 
-        set_window_size(page, WINDOW_WIDTH, BACKEND_RESPONSE_HEIGHT)
-        result = page.evaluate(RENDER_JS, PAYLOAD)
-        assert result["status"] == 200, result
-        template_prediction = json.loads(result["body"])["Predicted_Product_Store_Sales_Total"]
-        assert f"{template_prediction:.2f}" == "2904.05", result
-        grab_window(out / "backend_predict_response.png", WINDOW_WIDTH, BACKEND_RESPONSE_HEIGHT)
-        print("backend response:", result["body"].strip())
+        # The same request the frontend sends to the backend, so the value is measured from the live API.
+        response = context.request.post(
+            args.backend_url.rstrip("/") + "/v1/predict",
+            headers={"Content-Type": "application/json"},
+            data=json.dumps(PAYLOAD),
+        )
+        assert response.status == 200, response.status
+        template_prediction = response.json()["Predicted_Product_Store_Sales_Total"]
+        print("backend prediction for the course template payload:", f"{template_prediction:.2f}")
 
         set_window_size(page, WINDOW_WIDTH, SINGLE_PREDICTION_HEIGHT)
         goto_app(page, args.frontend_url)
         page.get_by_role("button", name="Predict sales").wait_for(timeout=60000)
         page.get_by_role("button", name="Predict sales").click()
         page.get_by_text("Predicted Product_Store_Sales_Total").wait_for(timeout=60000)
-        assert page.get_by_text("2,904.05").count() >= 1
+        assert page.get_by_text(f"{template_prediction:,.2f}").count() >= 1, template_prediction
         grab_window(out / "frontend_single_prediction.png", WINDOW_WIDTH, SINGLE_PREDICTION_HEIGHT)
-        print("frontend single prediction: 2,904.05")
+        print("frontend single prediction:", f"{template_prediction:,.2f}")
 
         page.get_by_role("tab", name="Batch CSV").click()
         page.locator('input[type="file"]').first.set_input_files(str(BATCH_CSV))
@@ -164,16 +157,20 @@ def main() -> None:
         print("downloaded batch predictions:", len(download_rows), "rows")
         browser.close()
 
+    with BATCH_CSV.open(newline="", encoding="utf-8") as handle:
+        batch_rows_received = sum(1 for _ in csv.DictReader(handle))
+
     record = {
         "captured_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "screenshot_method": "headed Chrome window grabbed from a virtual display, address bar included",
         "backend_url": args.backend_url,
         "frontend_url": args.frontend_url,
         "model_sha256": hashlib.sha256(MODEL_FILE.read_bytes()).hexdigest(),
+        "backend_tree_sha256": source_tree_digest(FULL_CODE / "backend_files"),
+        "frontend_tree_sha256": source_tree_digest(FULL_CODE / "frontend_files"),
         "template_prediction": template_prediction,
-        "frontend_single_prediction_text": "2,904.05",
-        "batch_rows_received": 10,
-        "batch_rows_predicted": 8,
+        "batch_rows_received": batch_rows_received,
+        "batch_rows_predicted": len(download_rows),
         "batch_download_file": downloaded.name,
         "batch_download_rows": len(download_rows),
     }

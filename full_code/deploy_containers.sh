@@ -23,8 +23,9 @@ docker info > /dev/null
 docker network inspect "$NETWORK" > /dev/null 2>&1 || docker network create "$NETWORK"
 docker rm -f "$BACKEND" "$FRONTEND" > /dev/null 2>&1 || true
 
-docker build -t superkart-full-backend:local backend_files
-docker build -t superkart-full-frontend:local frontend_files
+# --no-cache rebuilds every layer, so the running images always match the files in this folder.
+docker build --no-cache -t superkart-full-backend:local backend_files
+docker build --no-cache -t superkart-full-frontend:local frontend_files
 
 docker run -d --name "$BACKEND" --network "$NETWORK" \
   -p 127.0.0.1:7860:7860 superkart-full-backend:local > /dev/null
