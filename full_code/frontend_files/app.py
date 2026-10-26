@@ -7,8 +7,9 @@ import pandas as pd
 import requests
 import streamlit as st
 
-# The container run sets this to the backend's Docker-network name; localhost is only the local default.
+# The container run sets this to the backend's address: the public Codespace link in a Codespace, or the Docker-network name locally.
 API_URL = os.environ.get("SUPERKART_API_URL", "http://localhost:7860").rstrip("/")
+BATCH_RESULT_KEY = "batch_result"
 REQUEST_TIMEOUT_SECONDS = 60
 REFERENCE_YEAR = 2025
 PRODUCT_ID_PATTERN = re.compile(r"[A-Z]{2}\d{1,4}")
@@ -207,32 +208,51 @@ def summarize_batch_response(body):
     }
 
 
+def show_row_messages(frame):
+    """List each row-level message in full, one bullet per row."""
+    for row, message in zip(frame["row"], frame["message"]):
+        st.markdown(f"- **Row {row}:** {message}")
+
+
 def render_batch_prediction():
     st.write("Upload a CSV with these columns (one product-store row per line):")
     st.code(", ".join(BATCH_COLUMNS))
     uploaded = st.file_uploader("Batch CSV", type=["csv"])
     # Streamlit reruns the script on every interaction, so the upload is sent only after a file is chosen and the button is pressed.
-    if uploaded is None or not st.button("Predict batch"):
-        return
-    try:
-        body = request_batch_prediction(uploaded.getvalue(), uploaded.name)
-    except BackendError as exc:
-        st.error(str(exc))
-        return
-    except requests.RequestException as exc:
-        st.error(f"Could not reach the prediction API at {API_URL}: {exc}")
-        return
+    if uploaded is not None and st.button("Predict batch"):
+        try:
+            body = request_batch_prediction(uploaded.getvalue(), uploaded.name)
+        except BackendError as exc:
+            st.session_state.pop(BATCH_RESULT_KEY, None)
+            st.error(str(exc))
+            return
+        except requests.RequestException as exc:
+            st.session_state.pop(BATCH_RESULT_KEY, None)
+            st.error(f"Could not reach the prediction API at {API_URL}: {exc}")
+            return
+        st.session_state[BATCH_RESULT_KEY] = {"file_name": uploaded.name, "summary": summarize_batch_response(body)}
 
-    summary = summarize_batch_response(body)
+    # The result is kept in session state, so clicking the download button (which reruns the page) does not clear it.
+    result = st.session_state.get(BATCH_RESULT_KEY)
+    if uploaded is None or result is None or result["file_name"] != uploaded.name:
+        return
+    summary = result["summary"]
     st.write(f"Rows received: {summary['rows_received']}, predicted: {summary['rows_predicted']}")
     if not summary["predictions"].empty:
         st.dataframe(summary["predictions"], hide_index=True)
+        st.download_button(
+            "Download predictions (CSV)",
+            summary["predictions"].to_csv(index=False),
+            "superkart_predictions.csv",
+            "text/csv",
+        )
+    # Error and warning messages are listed in full, so long messages are not cut off.
     if not summary["errors"].empty:
         st.subheader("Rows that could not be predicted")
-        st.dataframe(summary["errors"], hide_index=True)
+        show_row_messages(summary["errors"])
     if not summary["warnings"].empty:
         st.subheader("Warnings")
-        st.dataframe(summary["warnings"], hide_index=True)
+        show_row_messages(summary["warnings"])
 
 
 def main():
@@ -243,7 +263,8 @@ def main():
 
     with st.sidebar:
         st.write("Prediction API")
-        st.code(API_URL)
+        # The URL wraps so the whole address is visible, including the public link in a Codespace.
+        st.code(API_URL, language=None, wrap_lines=True)
         if st.button("Check API status"):
             try:
                 status = check_api_status()

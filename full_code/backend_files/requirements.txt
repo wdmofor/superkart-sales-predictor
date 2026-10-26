@@ -1,7 +1,10 @@
+# Flask API and WSGI server.
 flask==3.1.1
 gunicorn==23.0.0
+# Numerical and model libraries, pinned to the versions the notebook trained with.
 numpy==2.0.2
 pandas==2.2.2
 scikit-learn==1.6.1
 joblib==1.4.2
+# The shipped model is a Random Forest. xgboost stays pinned so the pipeline still loads if a boosted model is swapped in.
 xgboost==2.1.4

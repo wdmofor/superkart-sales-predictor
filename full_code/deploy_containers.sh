@@ -10,6 +10,15 @@ NETWORK=superkart-net
 BACKEND=superkart-full-backend
 FRONTEND=superkart-full-frontend
 
+# In a Codespace the frontend calls the backend's public forwarded link, so every request goes to the deployed API.
+# Locally it uses the backend's Docker-network name.
+if [[ -n "${CODESPACE_NAME:-}" ]]; then
+  API_URL="https://${CODESPACE_NAME}-7860.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN:-app.github.dev}"
+else
+  API_URL="http://$BACKEND:7860"
+fi
+echo "Frontend will call the backend at: $API_URL"
+
 docker info > /dev/null
 docker network inspect "$NETWORK" > /dev/null 2>&1 || docker network create "$NETWORK"
 docker rm -f "$BACKEND" "$FRONTEND" > /dev/null 2>&1 || true
@@ -20,7 +29,7 @@ docker build -t superkart-full-frontend:local frontend_files
 docker run -d --name "$BACKEND" --network "$NETWORK" \
   -p 127.0.0.1:7860:7860 superkart-full-backend:local > /dev/null
 docker run -d --name "$FRONTEND" --network "$NETWORK" \
-  -p 127.0.0.1:7870:7860 -e "SUPERKART_API_URL=http://$BACKEND:7860" \
+  -p 127.0.0.1:7870:7860 -e "SUPERKART_API_URL=$API_URL" \
   superkart-full-frontend:local > /dev/null
 
 wait_for_health() {
